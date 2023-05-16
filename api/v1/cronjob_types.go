@@ -17,9 +17,9 @@ limitations under the License.
 package v1
 
 import (
+	batchv1 "k8s.io/api/batch/v1"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/client-go/applyconfigurations/batch/v1beta1"
-	corev1 "k8s.io/client-go/applyconfigurations/core/v1"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -39,7 +39,7 @@ type CronJobSpec struct {
 
 	Suspend *bool `json:"suspend,omitempty"`
 
-	JobTrmplate v1beta1.JobTemplateSpecApplyConfiguration `json:"jobTemplate"`
+	JobTemplate batchv1.JobTemplateSpec `json:"jobTemplate"`
 
 	SuccessfulJobsHistoryLimit *int32 `json:"successfulJobsHistoryLimit,omitempty"`
 
@@ -65,7 +65,7 @@ type CronJobStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Active []corev1.ObjectReferenceApplyConfiguration `json:"active,omitempty"`
+	Active []corev1.ObjectReference `json:"active,omitempty"`
 
 	LastScheduleTime *metav1.Time `json:"lastScheduleTime,omitempty"`
 }
